@@ -9,7 +9,7 @@ Welcome to the Banjo Documentation!
 Banjo is a wrapper for Django. It provides a simplified subset of Django's functionality.
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: Contents:
 
    models
@@ -25,12 +25,25 @@ Set Up
 To install Banjo:
 ``pip3 install django-banjo``
 
-To write a Banjo app, create a folder called ``app``, 
-define models in ``models.py`` and define views in ``views.py``. 
+To write a Banjo app, create this file structure:
+
+- ``/app``
+   - ``models.py``
+   - ``views.py``
+
+
+Banjo Server
+------------
+
+To run a Banjo server: ``banjo``
+
+To run a Banjo server in debug mode: ``banjo --debug``
+
+To run a Banjo server on a specific port: ``banjo --p 8001``
+
 
 Banjo Shell
 ------------
 
 To enter the Banjo shell: ``banjo --shell``
 
-To enter the Banjo shell in debug mode: ``banjo --shell --debug``
