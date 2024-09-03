@@ -14,7 +14,7 @@ Banjo is a wrapper for Django. It provides a simplified subset of Django's funct
 
    models
    views
-   example
+   .. example
 
 
 

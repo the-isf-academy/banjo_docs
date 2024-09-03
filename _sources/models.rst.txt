@@ -14,6 +14,9 @@ First, you must define your Model. Banjo provides four field types:
 
    - ``StringField`` ("alligator", "hazelnut")
 
+All models have `id` as a default field. You do not need to include this. 
+
+
 To create a model::
 
    # app/models.py
@@ -28,6 +31,14 @@ To create a model::
          self.age +=1
          self.save()
 
+      def json_response(self):
+         return {
+            "id": self.id,
+            "name", self.name,
+            "age", self.age,
+            "student", self.student
+
+
 *To create an instance of the model in the Banjo shell:*  ``banjo --shell``
 
    >>> one_person = Person(name='Dragon', age=15, student=True)
@@ -38,19 +49,6 @@ To create a model::
 ----
 
 All Banjo models have two funcitons built it. You can override in them in the class definition.
-
-.. py:function:: objects.to_dict()
-    
-   :return: a nicely formatted dictionary of the object
-
-   *example:* 
-
-      >>> one_person = Person(name='Dragon', age=15, student=True)
-      >>> one_person.save()
-      >>> one_person.to_dict()
-      {'name': 'Dragon',
-      'age': 15,
-      'student': True}
 
 
 .. py:function:: objects.from_dict()
