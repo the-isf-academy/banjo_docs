@@ -48,7 +48,6 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Models</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#Model"><code class="docutils literal notranslate"><span class="pre">Model</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#objects.to_dict"><code class="docutils literal notranslate"><span class="pre">objects.to_dict()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#objects.from_dict"><code class="docutils literal notranslate"><span class="pre">objects.from_dict()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#model-querying">Model Querying</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#objects.all"><code class="docutils literal notranslate"><span class="pre">objects.all()</span></code></a></li>
@@ -72,7 +71,6 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="views.html">Views</a></li>
-<li class="toctree-l1"><a class="reference internal" href="example.html">Example: Person Contact Server</a></li>
 </ul>
 
         </div>
@@ -115,6 +113,7 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">StringField</span></code> (“alligator”, “hazelnut”)</p></li>
 </ul>
 </div></blockquote>
+<p>All models have <cite>id</cite> as a default field. You do not need to include this.</p>
 <p>To create a model:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># app/models.py</span>
 <span class="kn">from</span> <span class="nn">banjo.models</span> <span class="kn">import</span> <span class="n">Model</span><span class="p">,</span> <span class="n">StringField</span><span class="p">,</span> <span class="n">IntegerField</span><span class="p">,</span> <span class="n">BooleanField</span>
@@ -127,6 +126,13 @@
    <span class="k">def</span> <span class="nf">update_age</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
       <span class="bp">self</span><span class="o">.</span><span class="n">age</span> <span class="o">+=</span><span class="mi">1</span>
       <span class="bp">self</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+   <span class="k">def</span> <span class="nf">json_response</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+      <span class="k">return</span> <span class="p">{</span>
+         <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+         <span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+         <span class="s2">&quot;age&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">age</span><span class="p">,</span>
+         <span class="s2">&quot;student&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">student</span>
 </pre></div>
 </div>
 <p><em>To create an instance of the model in the Banjo shell:</em>  <code class="docutils literal notranslate"><span class="pre">banjo</span> <span class="pre">--shell</span></code></p>
@@ -139,25 +145,6 @@
 </div>
 <hr class="docutils" />
 <p>All Banjo models have two funcitons built it. You can override in them in the class definition.</p>
-<dl class="py function">
-<dt class="sig sig-object py" id="objects.to_dict">
-<span class="sig-prename descclassname"><span class="pre">objects.</span></span><span class="sig-name descname"><span class="pre">to_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#objects.to_dict" title="Link to this definition"></a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>a nicely formatted dictionary of the object</p>
-</dd>
-</dl>
-<p><em>example:</em></p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">one_person</span> <span class="o">=</span> <span class="n">Person</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Dragon&#39;</span><span class="p">,</span> <span class="n">age</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">student</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">one_person</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">one_person</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
-<span class="go">{&#39;name&#39;: &#39;Dragon&#39;,</span>
-<span class="go">&#39;age&#39;: 15,</span>
-<span class="go">&#39;student&#39;: True}</span>
-</pre></div>
-</div>
-</dd></dl>
-
 <dl class="py function">
 <dt class="sig sig-object py" id="objects.from_dict">
 <span class="sig-prename descclassname"><span class="pre">objects.</span></span><span class="sig-name descname"><span class="pre">from_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#objects.from_dict" title="Link to this definition"></a></dt>
