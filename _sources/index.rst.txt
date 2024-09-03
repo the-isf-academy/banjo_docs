@@ -32,3 +32,5 @@ Banjo Shell
 ------------
 
 To enter the Banjo shell: ``banjo --shell``
+
+To enter the Banjo shell in debug mode: ``banjo --shell --debug``

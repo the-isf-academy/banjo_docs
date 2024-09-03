@@ -211,7 +211,7 @@ Advanced Filtering
    *example:* ::
 
       # Returns a QuerySet of Persons with names that include the letter 'a'
-      Person.objects.filter.(name__startswith='a')
+      Person.objects.filter(name__startswith='a')
 
 
 .. py:function:: objects.filter(__endswith=)
@@ -221,7 +221,7 @@ Advanced Filtering
    *example:* ::
 
       # Returns a QuerySet of Persons with names that include the letter 'a'
-      Person.objects.filter.(name__endswith='n')
+      Person.objects.filter(name__endswith='n')
 
 
 .. py:function:: objects.filter(__contains=)
@@ -231,7 +231,7 @@ Advanced Filtering
    *example:* ::
 
       # Returns a QuerySet of Persons with names that start the letter 'b'
-      Person.objects.filter.(name__contains='brown')
+      Person.objects.filter(name__contains='brown')
 
 
 **Conditional Symbols**
